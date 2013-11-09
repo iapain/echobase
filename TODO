@@ -1,0 +1,23 @@
+PEER CHAT/CALL
+- user has unique id, Peer is created based on this id
+
+- user can chat with many other users in different browser and/or tabs/windows
+  - problem: we can establish only one Peer for given id, call to user is per its peer's id so we need to know what is the current user peer id
+  - solution: we need to serialize somehow Peer object and then deserialize it when needed. Is it possible?
+  - another solution: we can allow only one session at the moment
+
+- user can have only one audio/video call (either one-to-one or conference)
+
+
+ROOM
+- we get participant list from rooms
+
+- one-to-one call
+  - make a room for 2 people, with given id
+  - allow connection to this room only for those people
+
+- conference call
+  - make a room for n people (n=5?)
+  - allow connection to this room only for those people
+
+- room has to have methods for adding and getting participants
