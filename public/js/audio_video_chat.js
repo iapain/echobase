@@ -1,7 +1,19 @@
-// Audio/Video chat
-// This should be a singleton class as the user can be involved in one audio/video conversation at a time
-// it may be either one-to-one call or multiuser conference
-// AudioVideoChat.get(roomId, peer);
+/*
+  AudioVideoChat v 0.0.1
+
+  Description
+  -----------
+  Audio/Video chat for one-to-one or conference callss
+
+  Dev Info
+  --------
+  This should be a singleton class as the user can be involved in one audio/video conversation at a time
+  it may be either one-to-one call or multiuser conference
+
+  Usage
+  -----
+  AudioVideoChat.get(roomId, peer);
+*/
 
 if(!window.EchoBase)
   window.EchoBase = {};
