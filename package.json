@@ -1,19 +1,25 @@
 {
   "name": "nko4-dopemob",
   "version": "0.0.0",
-  "description": "dopemob",
-  "main": "server.js",
+  "description": "Echo base from Star Wars goes digital",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:nko4/dopemob.git"
   },
   "dependencies": {
-    "nko": "*"
+    "nko": "*",
+    "coffee-script":"*",
+    "express":"*",
+    "connect":"*",
+    "socket.io":"*"
   },
   "engines": {
     "node": "0.10.x"
-  }
+  },
+  "author": "Deepak T, Michal O",
+  "license": "MIT"
 }
