@@ -12,12 +12,12 @@
 
   Usage
   -----
-  AudioVideoChat.get(roomId, peer);
+  AudioVideoChat.get(room, peer);
 */
 
 if(!window.EchoBase)
   window.EchoBase = {};
-window.EchoBase.roomId = "connection-room-id";
+// window.EchoBase.room = "connection-room-id";
 
 // Compatibility shim
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -27,14 +27,14 @@ var AudioVideoChat;
 AudioVideoChat = (function() {
   var instance, _AudioVideo;
 
-  function AudioVideoChat(roomId, peer) {}
+  function AudioVideoChat(room, peer) {}
 
   instance = null;
 
   _AudioVideo = (function() {
 
-    function _AudioVideo(roomId, peer) {
-      this.roomId = roomId;
+    function _AudioVideo(room, peer) {
+      this.room = room;
       this.peer = peer;
       this.existingCalls = [];
       this.$myVideoDiv = $('#my-video');
@@ -98,8 +98,8 @@ AudioVideoChat = (function() {
       });
     };
 
-    AudioVideoChat.get = function(roomId, peer) {
-      return instance != null ? instance : instance = new _AudioVideo(roomId, peer);
+    AudioVideoChat.get = function(room, peer) {
+      return instance != null ? instance : instance = new _AudioVideo(room, peer);
     };
 
     return _AudioVideo;
@@ -114,4 +114,6 @@ AudioVideoChat = (function() {
 //       { url: 'stun:stun.l.google.com:19302' } // Pass in optional STUN and TURN server for maximum network compatibility
 //     ]}});
 
-// AudioVideoChat.get('asdeded', peer);
+// var room = new Room('dsdsdssd', options)
+
+// AudioVideoChat.get(room, peer);

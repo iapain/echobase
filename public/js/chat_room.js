@@ -11,15 +11,15 @@
 
   Usage
   -----
-  new ChatRoom(roomId, peer).connect('user1').connect('user2')
+  new ChatRoom(room, peer).connect('user1').connect('user2')
 */
 
 var ChatRoom;
 
 ChatRoom = (function() {
 
-  function ChatRoom(roomId, peer) {
-    this.roomId = roomId;
+  function ChatRoom(room, peer) {
+    this.room = room;
     this.peer = peer;
     this.activeConnections = [];
   }
