@@ -1,0 +1,23 @@
+nav.top-bar.hide-for-small
+  ul.title-area
+    li.name
+      h1
+        a(href="/") EchoBase
+    li.toggle-topbar
+      a(href="#")
+
+  section.top-bar-section
+    ul.right
+        li.show-for-small
+          a(href='/') Home
+        li
+          a(href='#features') Features
+        li
+          a(href='#team') Team
+        if (typeof(user) == 'undefined')
+          li.active
+            a(href='/login') Login with Twitter
+        else
+          li
+            a(href="/logout") Logout
+

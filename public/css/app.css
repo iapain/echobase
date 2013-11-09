@@ -1,0 +1,42 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+nav.top-bar {
+  background-color: #34495e;
+}
+
+.top-bar-section li a:not(.button) {
+  background-color: #34495e;
+}
+
+.top-bar-section li a:hover:not(.button) {
+  background-color:#16a085;
+}
+
+.top-bar-section ul li.active > a {
+  background-color: #16a085;
+}
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+
