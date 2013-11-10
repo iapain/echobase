@@ -43,6 +43,11 @@ a.flat-green {
   background-color:#16a085;
 }
 
+video {
+  width: 480px;
+  height: 320px;
+}
+
 
 /* -----------------------------------------
    Page Name 1

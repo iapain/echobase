@@ -1,11 +1,16 @@
 extends ../layout
 
 block content
-  header
-    h1.heading_supersize  #{room._id}
-
+  section
+    h4.text-center Conference Call
   #video-container
     video#my-video(muted=true, autoplay=true)
+
+  section
+    h4.text-center
+      | Call URL: 
+      a(href="http://dopemob.2013.nodeknockout.com/room/#{room._id}") http://dopemob.2013.nodeknockout.com/room/#{room._id}
+      | Pass this URL to invite more people (limited to 5) or open in new tab to test.
 
 block footer_scripts
   script.
