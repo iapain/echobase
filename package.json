@@ -21,7 +21,8 @@
     "jade": "*",
     "redis": "*",
     "connect-redis": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "passport.socketio": "*"
   },
   "repository": {
     "type": "git",
