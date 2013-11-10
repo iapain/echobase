@@ -14,13 +14,18 @@ module.exports = (app) ->
       # first check if user.incall is false
 
       room = new Room()
-      room.participants.push user.username
-      room.participants.push req.user.username
-      room.limit = 2
+      # room.participants.push user.username
+      # room.participants.push req.user.username
+      # room.limit = 2
 
       room.save ->
         # socket.emit('connect with', {user: "#{req.user.username}", room: "#{room.id}"});
         res.render "call/show", room: room, user: req.user, callee: user
+
+  app.get "/room/create", ensureLoggedIn('/login'), (req, res) ->
+    room = new Room()
+    room.save ->
+      res.redirect "/room/#{room._id}"
 
   # TODO
   # this should set user.incall to true
