@@ -20,7 +20,8 @@
     "connect-ensure-login": "*",
     "jade": "*",
     "redis": "*",
-    "connect-redis": "*"
+    "connect-redis": "*",
+    "mongoose": "*"
   },
   "repository": {
     "type": "git",
