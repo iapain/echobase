@@ -32,14 +32,14 @@ module.exports = (app) ->
 
       # set user.incall to true to avoid multiple calling to the person which is already calling
 
-      if room.participants.indexOf(req.user.username) > -1
-        unless room.answeredBy.indexOf(req.user.username)
-          room.answeredBy.push(req.user.username)
-          room.remainingParticipants.push(req.user.username)
-        room.save ->
-          res.render "call/room", user: req.user, room: room
-      else
-        res.redirect "/"
+      # if room.participants.indexOf(req.user.username) > -1
+      #   unless room.answeredBy.indexOf(req.user.username)
+      #     room.answeredBy.push(req.user.username)
+      #     room.remainingParticipants.push(req.user.username)
+      #   room.save ->
+      res.render "call/room", user: req.user, room: room
+      # else
+      #   res.redirect "/"
 
   # TODO
   # It should set user.incall to false and remove user from room.remainingParticipants
