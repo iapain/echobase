@@ -22,7 +22,8 @@
     "redis": "*",
     "connect-redis": "*",
     "mongoose": "*",
-    "passport.socketio": "*"
+    "passport.socketio": "*",
+    "rollbar": "*"
   },
   "repository": {
     "type": "git",
