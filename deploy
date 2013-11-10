@@ -369,3 +369,15 @@ check_for_local_changes
 
 # deploy
 deploy "${REF:-`config_get ref`}"
+
+# notify rollback
+ACCESS_TOKEN=b32656364a4e4011a78492a624be2b92
+ENVIRONMENT=production
+LOCAL_USERNAME=`whoami`
+REVISION=`git log -n 1 --pretty=format:"%H"`
+
+curl https://api.rollbar.com/api/1/deploy/ \
+  -F access_token=$ACCESS_TOKEN \
+  -F environment=$ENVIRONMENT \
+  -F revision=$REVISION \
+  -F local_username=$LOCAL_USERNAME
