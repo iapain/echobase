@@ -14,10 +14,10 @@ nav.top-bar.hide-for-small
           a(href='#features') Features
         li
           a(href='#team') Team
-        if (typeof(user) == 'undefined')
+        if (typeof(user) === undefined || user == null)
           li.active
             a(href='/login') Login with Twitter
         else
           li
-            a(href="/logout") Logout
+            a(href="/logout") #{user.username} Logout
 
