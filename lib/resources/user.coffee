@@ -9,19 +9,23 @@ User = new Schema
 
   name:
     type: String
-    
+
   username:
     type: String
     required: true
     index:
       unique: true
       dropDups: true
- 
+
   bio:
     type: String
 
   image:
     type: String
+
+  # incall:
+  #   type: Boolean
+  #   default: false
 
 
 mongoose.model "User", User

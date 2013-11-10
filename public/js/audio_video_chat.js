@@ -1,5 +1,5 @@
 /*
-  AudioVideoChat v 0.0.2
+  AudioVideoChat v 0.0.3
 
   Description
   -----------
@@ -7,59 +7,49 @@
 
   Dev Info
   --------
-  This should be a singleton class as the user can be involved in one audio/video conversation at a time
-  it may be either one-to-one call or multiuser conference
 
   Usage
   -----
   AudioVideoChat.get(room, peer);
 */
-
-if(!window.EchoBase)
-  window.EchoBase = {};
-// window.EchoBase.room = "connection-room-id";
-
-// Compatibility shim
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
 var AudioVideoChat;
+window.existingCalls = [];
 
 AudioVideoChat = (function() {
   var instance, _AudioVideo;
 
-  function AudioVideoChat(room, peer) {}
+  function AudioVideoChat(room, peer, callback) {}
 
   instance = null;
 
   _AudioVideo = (function() {
 
-    function _AudioVideo(room, peer) {
+    function _AudioVideo(room, peer, callback) {
+      this.peerActions = __bind(this.peerActions, this);
       this.room = room;
       this.peer = peer;
       this.existingCalls = [];
       this.$myVideoDiv = $('#my-video');
-      this.startLocalStream().peerActions();
+      this.callback = callback;
+      this.startLocalStream(this.peerActions);
     }
 
     // start local video stream
-    _AudioVideo.prototype.startLocalStream = function() {
+    _AudioVideo.prototype.startLocalStream = function(callback) {
       var _this = this;
       navigator.getUserMedia({audio: true, video: true}, function(stream){
         // Set your video displays
-        _this.$myVideoDiv.prop('src', URL.createObjectURL(stream));
+        $('#my-video').prop('src', URL.createObjectURL(stream));
 
         window.localStream = stream;
+        callback();
       }, function(){ /* show error */ });
       return this;
     };
 
-    _AudioVideo.prototype.makeCall = function() {
-      // take info from room about participants and try to connect them
-      this.participants = [];
-      for(var participant in this.participants) {
-        var call = peer.call(participant, window.localStream);
-        this.establishConnection(call);
-      }
+    _AudioVideo.prototype.makeCall = function(peerId) {
+      var call = peer.call(peerId, window.localStream);
+      this.establishConnection(call);
     };
 
     _AudioVideo.prototype.endCall = function() {
@@ -79,27 +69,27 @@ AudioVideoChat = (function() {
           $('#video-container').append($('<video/>').prop('id', call.peer).prop('autoplay', true).prop('src', URL.createObjectURL(stream)));
       });
 
-      window.existingCalls.push(call);
+      this.existingCalls.push(call);
 
       call.on('close', function() {
         // do something with that
+        // maybe here we should send a signal to room that meeting is finished?
       });
       return this;
     };
 
     _AudioVideo.prototype.peerActions = function() {
+      var _this = this;
       this.peer.on('call', function(call){
         var caller = peer.id;
-        // var conf = confirm("" + caller + " is calling you.");
-        // if(conf == true){
         call.answer(window.localStream);
-        this.establishConnection(call);
-        // }
+        _this.establishConnection(call);
       });
+      this.callback();
     };
 
-    AudioVideoChat.get = function(room, peer) {
-      return instance != null ? instance : instance = new _AudioVideo(room, peer);
+    AudioVideoChat.get = function(room, peer, callback) {
+      return instance != null ? instance : instance = new _AudioVideo(room, peer, callback);
     };
 
     return _AudioVideo;
@@ -109,11 +99,3 @@ AudioVideoChat = (function() {
   return AudioVideoChat;
 
 }).call(this);
-
-// var peer = new Peer("mmmmmasasa", { key: 'lwjd5qra8257b9', debug: 1, config: {'iceServers': [
-//       { url: 'stun:stun.l.google.com:19302' } // Pass in optional STUN and TURN server for maximum network compatibility
-//     ]}});
-
-// var room = new Room('dsdsdssd', options)
-
-// AudioVideoChat.get(room, peer);

@@ -18,7 +18,7 @@ module.exports = (app) ->
   app.get "/logout", (req, res) ->
     req.logout()
     res.redirect "/"
-  
+
   # Twitter auth related stuff
   app.get "/auth/twitter", passport.authenticate "twitter"
   app.get "/auth/twitter/callback", passport.authenticate 'twitter',

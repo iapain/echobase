@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  header
+    h1.heading_supersize  Calling #{callee.name}
+
+block footer_scripts
+  script.
+    socket.emit('av call with', {user: "#{callee.username}", room: "#{room.id}"});
+    window.setTimeout(function() {window.location = "/room/#{room.id}";}, 1000);
+
+
+

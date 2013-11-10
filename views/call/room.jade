@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  header
+    h1.heading_supersize  #{room._id}
+
+  #video-container
+    video#my-video(muted=true, autoplay=true)
+
+block footer_scripts
+  script.
+    var avChat = undefined;
+    peer.on('open', function(id) {
+      avChat = AudioVideoChat.get("#{room._id}", peer, audioVideoChat);
+    });
+
+    function audioVideoChat() {
+      socket.emit('subscribe', {room: "#{room._id}", peer: peer.id});
+      socket.on('connect with user', function(data) {
+        if (peer.id !== data.peer) {
+          avChat.makeCall(data.peer);
+        }
+      });
+    }
