@@ -39,6 +39,11 @@ a.circle {
   color: transparent;
 } /* IE fix: removes blue border */ 
 
+a.flat-green {
+  background-color:#16a085;
+}
+
+
 /* -----------------------------------------
    Page Name 1
 ----------------------------------------- */
