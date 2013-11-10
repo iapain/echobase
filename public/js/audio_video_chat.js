@@ -83,7 +83,14 @@ AudioVideoChat = (function() {
       this.peer.on('call', function(call){
         var caller = peer.id;
         call.answer(window.localStream);
-        _this.establishConnection(call);
+        call.on('stream', function(stream){
+          var $video = $('#their-video-' + call.peer);
+          if($video[0])
+            $video.prop('src', URL.createObjectURL(stream));
+          else
+            $('#video-container').append($('<video/>').prop('id', call.peer).prop('autoplay', true).prop('src', URL.createObjectURL(stream)));
+        });
+        // _this.establishConnection(call);
       });
       this.callback();
     };
