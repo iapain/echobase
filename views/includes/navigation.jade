@@ -19,5 +19,6 @@ nav.top-bar.hide-for-small
             a(href='/login') Login with Twitter
         else
           li
-            a(href="/logout") #{user.username} Logout
+            a.circle(href="/logout")
+              img(src="#{user.image}", alt="Logout")
 
