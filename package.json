@@ -11,6 +11,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "nko": "*",
     "coffee-script":"*",
     "express":"*",
     "connect":"*",
