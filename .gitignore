@@ -1,6 +1,7 @@
 node_modules/*
 lib-cov/*
 config/config.json
+id_deploy
 npm-debug*
 *.log
 *.swp
